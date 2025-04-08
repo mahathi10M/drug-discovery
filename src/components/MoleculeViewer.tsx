@@ -32,9 +32,9 @@ const MoleculeViewer: React.FC<MoleculeViewerProps> = ({
   ]);
   
   const [latestNews, setLatestNews] = useState<NewsItem[]>([
+    { title: 'FDA Novel Drug Approvals 2024', url: 'https://www.fda.gov/drugs/novel-drug-approvals-fda/novel-drug-approvals-2024' },
+    { title: 'Medicine in Drug Discovery - ScienceDirect', url: 'https://www.sciencedirect.com/journal/medicine-in-drug-discovery/vol/22/suppl/C' },
     { title: 'New breakthrough in cancer drug development', url: 'https://www.nature.com/subjects/drug-discovery' },
-    { title: 'AI accelerates discovery of novel antibiotics', url: 'https://www.science.org/content/article/ai-guided-discovery-powerful-new-antibiotic' },
-    { title: 'FDA approves revolutionary treatment for rare disease', url: 'https://www.fda.gov/news-events/press-announcements' },
   ]);
 
   // Simulate dynamic data loading
