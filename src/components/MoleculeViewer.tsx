@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Beaker, Atom, TrendingUp, BookOpen, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface MoleculeViewerProps {
   smiles?: string;
@@ -31,9 +32,9 @@ const MoleculeViewer: React.FC<MoleculeViewerProps> = ({
   ]);
   
   const [latestNews, setLatestNews] = useState<NewsItem[]>([
-    { title: 'New breakthrough in cancer drug development', url: '#' },
-    { title: 'AI accelerates discovery of novel antibiotics', url: '#' },
-    { title: 'FDA approves revolutionary treatment for rare disease', url: '#' },
+    { title: 'New breakthrough in cancer drug development', url: 'https://www.nature.com/subjects/drug-discovery' },
+    { title: 'AI accelerates discovery of novel antibiotics', url: 'https://www.science.org/content/article/ai-guided-discovery-powerful-new-antibiotic' },
+    { title: 'FDA approves revolutionary treatment for rare disease', url: 'https://www.fda.gov/news-events/press-announcements' },
   ]);
 
   // Simulate dynamic data loading
@@ -51,6 +52,12 @@ const MoleculeViewer: React.FC<MoleculeViewerProps> = ({
     const newsInterval = setInterval(rotateNews, 5000);
     return () => clearInterval(newsInterval);
   }, []);
+
+  // Function to generate topic URLs based on the topic name
+  const getTopicUrl = (topic: string) => {
+    const slug = topic.toLowerCase().replace(/\s+/g, '-');
+    return `/topics/${slug}`;
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -124,7 +131,9 @@ const MoleculeViewer: React.FC<MoleculeViewerProps> = ({
               <ul className="pl-6 list-disc text-sm">
                 {trendingTopics.map((topic, index) => (
                   <li key={index} className="mb-1 text-molecular-blue hover:text-molecular-purple">
-                    <a href={`#${topic.replace(/\s+/g, '-').toLowerCase()}`}>{topic}</a>
+                    <Link to={getTopicUrl(topic)} className="hover:underline">
+                      {topic}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -138,7 +147,12 @@ const MoleculeViewer: React.FC<MoleculeViewerProps> = ({
               <ul className="space-y-2 text-sm">
                 {latestNews.map((item, index) => (
                   <li key={index} className="p-2 hover:bg-molecular-gray/50 rounded transition-colors">
-                    <a href={item.url} className="flex items-start">
+                    <a 
+                      href={item.url} 
+                      className="flex items-start"
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
                       <span className="flex-1">{item.title}</span>
                       <ExternalLink className="h-3 w-3 ml-1 flex-shrink-0 text-molecular-purple" />
                     </a>
