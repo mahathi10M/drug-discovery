@@ -1,7 +1,7 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { Molecule } from 'lucide-react';
+import { Flask, Atom } from 'lucide-react';
 
 interface MoleculeViewerProps {
   smiles?: string;
@@ -30,13 +30,13 @@ const MoleculeViewer: React.FC<MoleculeViewerProps> = ({
           <div className="h-64 flex items-center justify-center p-6">
             {!smiles ? (
               <div className="text-center text-muted-foreground">
-                <Molecule className="h-16 w-16 mx-auto mb-2 text-muted-foreground/50" />
+                <Flask className="h-16 w-16 mx-auto mb-2 text-muted-foreground/50" />
                 <p>Enter a SMILES string to visualize</p>
               </div>
             ) : (
               <div className="text-center">
                 <div className="bg-white rounded-full h-40 w-40 mx-auto flex items-center justify-center shadow-sm border">
-                  <Molecule className="h-20 w-20 text-molecular-purple animate-spin-slow" />
+                  <Flask className="h-20 w-20 text-molecular-purple animate-spin-slow" />
                 </div>
                 <p className="mt-4 font-mono text-xs truncate max-w-xs mx-auto">{smiles}</p>
               </div>
@@ -55,19 +55,19 @@ const MoleculeViewer: React.FC<MoleculeViewerProps> = ({
             {isLoading ? (
               <div className="text-center">
                 <div className="bg-white rounded-full h-32 w-32 mx-auto flex items-center justify-center shadow-sm border animate-pulse">
-                  <Molecule className="h-16 w-16 text-molecular-lightPurple animate-spin-slow" />
+                  <Atom className="h-16 w-16 text-molecular-lightPurple animate-spin-slow" />
                 </div>
                 <p className="mt-4">Generating molecule...</p>
               </div>
             ) : !generatedSmiles ? (
               <div className="text-center text-muted-foreground">
-                <Molecule className="h-16 w-16 mx-auto mb-2 text-muted-foreground/50" />
+                <Atom className="h-16 w-16 mx-auto mb-2 text-muted-foreground/50" />
                 <p>Generated molecule will appear here</p>
               </div>
             ) : (
               <div className="text-center">
                 <div className="bg-white rounded-full h-40 w-40 mx-auto flex items-center justify-center shadow-sm border">
-                  <Molecule className="h-20 w-20 text-molecular-blue animate-spin-slow" />
+                  <Atom className="h-20 w-20 text-molecular-blue animate-spin-slow" />
                 </div>
                 <p className="mt-4 font-mono text-xs truncate max-w-xs mx-auto">{generatedSmiles}</p>
               </div>
